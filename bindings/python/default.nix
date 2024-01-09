@@ -11,7 +11,7 @@ let
   cargoTOML = builtins.fromTOML (builtins.readFile ./Cargo.toml);
 in
 
-python3Packages.toPythonModule (stdenv.mkDerivation {
+python3Packages.toPythonModule (stdenv.mkDerivation (finalAttrs: {
   pname = "example-python";
   inherit (cargoTOML.package) version;
 
@@ -30,9 +30,18 @@ python3Packages.toPythonModule (stdenv.mkDerivation {
     libiconv
   ]);
 
+  doCheck = true;
+  doInstallCheck = finalAttrs.doCheck;
+
+  nativeInstallCheckInputs = [
+    python3Packages.unittestCheckHook
+  ];
+
+  unittestFlagsArray = [ "-s" "${finalAttrs.buildAndTestSubdir}/tests" ];
+
   pythonImportsCheck = [
     "example"
   ];
 
   strictDeps = true;
-})
+}))
