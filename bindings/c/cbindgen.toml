@@ -1,0 +1,4 @@
+language = "c"
+cpp_compat = true
+include_guard = "EXAMPLE_H_"
+namespace = "example"

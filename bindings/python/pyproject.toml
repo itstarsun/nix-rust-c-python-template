@@ -1,0 +1,12 @@
+[build-system]
+requires = ["maturin>=1,<2"]
+build-backend = "maturin"
+
+[project]
+name = "example"
+dynamic = ["version"]
+requires-python = ">=3.8"
+
+[tool.maturin]
+module-name = "example._example"
+features = ["pyo3/extension-module"]

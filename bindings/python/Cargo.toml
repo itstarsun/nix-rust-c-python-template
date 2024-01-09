@@ -1,0 +1,15 @@
+[package]
+name = "example-python"
+version = "0.1.0"
+edition = "2021"
+
+[lib]
+name = "_example"
+crate-type = ["cdylib"]
+
+[dependencies]
+example = { version = "0.1.0", path = "../../example" }
+
+[dependencies.pyo3]
+version = "0.20.2"
+features = ["abi3-py38"]

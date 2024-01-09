@@ -1,0 +1,11 @@
+[package]
+name = "example-c"
+version = "0.1.0"
+edition = "2021"
+
+[lib]
+name = "example"
+crate-type = ["staticlib"]
+
+[dependencies]
+example = { version = "0.1.0", path = "../../example" }
